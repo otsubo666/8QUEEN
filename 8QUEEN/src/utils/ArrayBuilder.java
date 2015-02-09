@@ -6,14 +6,14 @@ import java.util.List;
 public class ArrayBuilder {
 	private List<int[]> intArrayList;
 	
-	//コンストラクタ。順列リストを生成。
+	
 	public ArrayBuilder(int arrayCount){
 		this.intArrayList=new ArrayList<>();
 		genereteArrayList(arrayCount);
 	}
 
 	
-	//数値でできる全順列を収納するリストを生成するメソッド。
+	
 	private void genereteArrayList(int arrayCount){
 		int[] right = new int[arrayCount];
 		for (int i = 0; i < arrayCount; i++) {
@@ -24,24 +24,24 @@ public class ArrayBuilder {
 		permutation(left, right);
 	}
 	
-	// 再帰用メソッド
+	
 		private void permutation(int[] left, int[] right) {
 			int[] newLeft = new int[left.length + 1];
 			for (int i = 0; i < left.length; i++) {
 				newLeft[i] = left[i];
 			}
 			for (int i = 0; i < right.length; i++) {
-				newLeft[newLeft.length - 1] = right[i]; // 1つずつ避けておく
-				if (right.length == 1) { // もうありません
+				newLeft[newLeft.length - 1] = right[i]; 
+				if (right.length == 1) { 
 					this.intArrayList.add(newLeft);
 					//showResult(newLeft);
 				} else {
 					int[] newRight = new int[right.length - 1];
-					for (int j = 0; j < i; j++) { // 取り除いたのより前をコピー
+					for (int j = 0; j < i; j++) { 
 						newRight[j] = right[j];
 					}
 
-					for (int j = i + 1; j < right.length; j++) { // 後をコピー
+					for (int j = i + 1; j < right.length; j++) { 
 						newRight[j - 1] = right[j];
 					}
 
@@ -50,7 +50,7 @@ public class ArrayBuilder {
 			}
 
 		}
-//      デバッグ用。
+
 //		private void showResult(int[] result) {
 //			for (int i = 0; i < result.length; i++) {
 //			System.out.print(result[i]);
@@ -58,7 +58,7 @@ public class ArrayBuilder {
 //			System.out.println();
 //			}
 	
-	//リストを返すメソッド
+
 	public List<int[]> getList(){
 		return this.intArrayList;
 	}

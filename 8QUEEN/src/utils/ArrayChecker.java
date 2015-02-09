@@ -5,8 +5,7 @@ public class ArrayChecker {
 		
 	}
 	public boolean doCheck(int array[]){
-		//配列の要素をチェック。
-		//配列の要素を一つずつ取り出し、次の値と比較する。
+
 		boolean result=false;
 		int upper,downer;
 		for(int i=0;i<array.length;i++){

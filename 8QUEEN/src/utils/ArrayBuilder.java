@@ -34,6 +34,7 @@ public class ArrayBuilder {
 				newLeft[newLeft.length - 1] = right[i]; 
 				if (right.length == 1) { 
 					this.intArrayList.add(newLeft);
+					//デバッグ用
 					//showResult(newLeft);
 				} else {
 					int[] newRight = new int[right.length - 1];

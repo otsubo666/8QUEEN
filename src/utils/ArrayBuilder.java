@@ -1,31 +1,32 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import printer.BoardPrinter;
 
 public class ArrayBuilder {
-	private List<int[]> intArrayList;
+	//private List<int[]> intArrayList;
 	
-	//コンストラクタ。順列リストを生成。
-	public ArrayBuilder(int arrayCount){
-		this.intArrayList=new ArrayList<>();
-		genereteArrayList(arrayCount);
+
+	public ArrayBuilder(int arrayCount) {
+		//this.intArrayList=new ArrayList<>();
+		ArrayChecker arrayChecker=new ArrayChecker();
+		BoardPrinter boardPrinter=new BoardPrinter();
+		genereteArrayList(arrayCount,arrayChecker,boardPrinter);
 	}
 
 	
 	//数値でできる全順列を収納するリストを生成するメソッド。
-	private void genereteArrayList(int arrayCount){
+	private void genereteArrayList(int arrayCount, ArrayChecker arrayChecker,BoardPrinter boardPrinter){
 		int[] right = new int[arrayCount];
 		for (int i = 0; i < arrayCount; i++) {
 			right[i] = i + 1;
 		}
 		int[] left = new int[0];
-
-		permutation(left, right);
+		permutation(left, right,arrayChecker,boardPrinter);
+		boardPrinter.printFinalLine();
 	}
 	
 	// 再帰用メソッド
-		private void permutation(int[] left, int[] right) {
+		private void permutation(int[] left, int[] right, ArrayChecker arrayChecker,BoardPrinter boardPrinter) {
 			int[] newLeft = new int[left.length + 1];
 			for (int i = 0; i < left.length; i++) {
 				newLeft[i] = left[i];
@@ -33,8 +34,9 @@ public class ArrayBuilder {
 			for (int i = 0; i < right.length; i++) {
 				newLeft[newLeft.length - 1] = right[i]; // 1つずつ避けておく
 				if (right.length == 1) { // もうありません
-					this.intArrayList.add(newLeft);
-					//showResult(newLeft);
+					if(!arrayChecker.doCheck(newLeft)) {
+						boardPrinter.printOneLine(newLeft);
+					}
 				} else {
 					int[] newRight = new int[right.length - 1];
 					for (int j = 0; j < i; j++) { // 取り除いたのより前をコピー
@@ -45,23 +47,14 @@ public class ArrayBuilder {
 						newRight[j - 1] = right[j];
 					}
 
-					permutation(newLeft, newRight);
+					permutation(newLeft, newRight, arrayChecker,boardPrinter);
 				}
 			}
 
 		}
-//      デバッグ用。
-//		private void showResult(int[] result) {
-//			for (int i = 0; i < result.length; i++) {
-//			System.out.print(result[i]);
-//			}
-//			System.out.println();
-//			}
+
 	
-	//リストを返すメソッド
-	public List<int[]> getList(){
-		return this.intArrayList;
-	}
+
 	
 		
 	

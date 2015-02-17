@@ -9,9 +9,13 @@ public class BoardPrinter {
 	public void printOneLine(int array[]){
 		this.lineCounter++;
 		System.out.print(lineCounter+":");
-		for(int i=0;i<array.length;i++){
-			if(i==array.length-1){System.out.println("("+(i+1)+","+array[i]+")");}
-			else{System.out.print("("+(i+1)+","+array[i]+")");}
+		for(int i=0;i<array.length;i++) {
+			if(i==array.length-1) {
+				System.out.println("("+(i+1)+","+array[i]+")");
+				}
+			else{ 
+				System.out.print("("+(i+1)+","+array[i]+")");
+			}
 		}
 	}
 	
